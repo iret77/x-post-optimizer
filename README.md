@@ -42,9 +42,9 @@ Not grounded — flagged as `[HEURISTIC]` if mentioned:
 Works in **every Claude app** — macOS, Windows, Linux, iOS, Android.
 
 1. Download [`x-post-optimizer.skill`](https://github.com/iret77/x-post-optimizer/releases/latest/download/x-post-optimizer.skill) from the [latest release](https://github.com/iret77/x-post-optimizer/releases/latest).
-2. In your Claude app, open Settings → Capabilities → Skills (exact menu name varies by version; look for "Add skill" or "Upload skill").
+2. Open <https://claude.ai/customize/connectors> in your browser (the Claude app links here too — look for the "manage / customize" entry in settings).
 3. Upload the `.skill` file.
-4. Restart the app or start a new conversation. The skill triggers automatically on relevant prompts.
+4. Start a new conversation. The skill triggers automatically on relevant prompts.
 
 That's it. No CLI, no git, no manual file copying.
 
