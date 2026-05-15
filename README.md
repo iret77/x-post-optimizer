@@ -1,6 +1,6 @@
 # x-post-optimizer
 
-A Claude plugin that drafts and reviews posts for X (Twitter) based on the open-source [xai-org/x-algorithm](https://github.com/xai-org/x-algorithm) repository (released 2026).
+A Claude skill that drafts and reviews posts for X (Twitter) based on the open-source [xai-org/x-algorithm](https://github.com/xai-org/x-algorithm) repository (released 2026).
 
 Unlike most "X algorithm" guides floating around, this skill is built around a strict epistemic rule: every recommendation is labeled as one of three categories.
 
@@ -37,41 +37,31 @@ Not grounded — flagged as `[HEURISTIC]` if mentioned:
 
 ## Install
 
-The easiest way: **ask Claude to install it for you.** Copy the prompt that matches your setup, paste it into a fresh Claude conversation, and Claude does the rest.
+### Easiest: download the `.skill` file and drop it into your Claude app
 
-### Option A — Claude Desktop app (Cowork mode or regular chat)
+Works in **every Claude app** — macOS, Windows, Linux, iOS, Android.
 
-Open a new Claude conversation and paste this:
+1. Download [`x-post-optimizer.skill`](https://github.com/iret77/x-post-optimizer/releases/latest/download/x-post-optimizer.skill) from the [latest release](https://github.com/iret77/x-post-optimizer/releases/latest).
+2. In your Claude app, open Settings → Capabilities → Skills (exact menu name varies by version; look for "Add skill" or "Upload skill").
+3. Upload the `.skill` file.
+4. Restart the app or start a new conversation. The skill triggers automatically on relevant prompts.
 
-> Please install the Claude plugin from https://github.com/iret77/x-post-optimizer.
->
-> If you have filesystem or computer-use access on this machine, do it yourself: figure out where Claude Desktop stores plugins on this OS, clone the repo into the right place, and confirm it worked by listing the installed plugins.
->
-> If you don't have those tools, walk me through it step by step using the Plugins or Marketplace section of the app's settings. Tell me exactly what to click. After I'm done, ask me to confirm the plugin shows up in the list.
+That's it. No CLI, no git, no manual file copying.
 
-After install, **restart the Claude app or start a new conversation** — plugins are loaded at session start. Then test by asking Claude to "draft a tweet about [your topic]" or "review this X post: [your draft]".
+### Claude Code (CLI users)
 
-### Option B — Claude Code (CLI)
+Two options:
 
-Open Claude Code in any directory and paste this:
+**Option 1 — as a marketplace plugin** (recommended if you want auto-updates):
 
-> Please install the x-post-optimizer skill from https://github.com/iret77/x-post-optimizer into my local Claude Code skills directory.
->
-> Steps:
-> 1. Clone the repo to /tmp/x-post-optimizer
-> 2. Copy /tmp/x-post-optimizer/skills/x-post-optimizer to ~/.claude/skills/
-> 3. Remove /tmp/x-post-optimizer
-> 4. Confirm the install by listing the contents of ~/.claude/skills/x-post-optimizer/ — I should see SKILL.md and a references/ folder
->
-> Then tell me to start a new Claude Code session for the skill to take effect.
+```bash
+claude plugin marketplace add iret77/x-post-optimizer
+claude plugin install x-post-optimizer
+```
 
-### Option C — Manual install
+Restart your Claude Code session.
 
-If you'd rather do it yourself.
-
-**Claude Desktop app:** Open the app → Settings → Plugins (or Marketplace, depending on your version) → "Add plugin from URL" or "Custom plugin source" → enter `https://github.com/iret77/x-post-optimizer`. Restart the app.
-
-**Claude Code CLI:**
+**Option 2 — as a standalone skill** (simpler, no marketplace overhead):
 
 ```bash
 git clone https://github.com/iret77/x-post-optimizer.git /tmp/x-post-optimizer
@@ -81,23 +71,23 @@ rm -rf /tmp/x-post-optimizer
 
 Restart your Claude Code session.
 
-### How to verify the install worked
+### Verify the install worked
 
 After restarting, ask Claude in a new conversation:
 
-> Do you have a skill or plugin called x-post-optimizer available?
+> Do you have a skill called x-post-optimizer available?
 
-A successful install gets you a "yes, here's what it does"; a failed install gets you a "no". If it failed, try the next option above or open an issue.
+A successful install gets you a "yes, here's what it does"; a failed install gets you a "no, but I can help you draft tweets anyway". If it failed, open an [issue](https://github.com/iret77/x-post-optimizer/issues).
 
 ## Structure
 
 ```
 x-post-optimizer/
-├── .claude-plugin/
-│   ├── plugin.json                    # Plugin manifest
-│   └── marketplace.json               # Marketplace metadata
+├── .claude-plugin/                    # Plugin manifests (for CLI marketplace install)
+│   ├── plugin.json
+│   └── marketplace.json
 └── skills/
-    └── x-post-optimizer/
+    └── x-post-optimizer/              # The actual skill — this is what gets zipped into the .skill file
         ├── SKILL.md                   # Workflow + triggers
         └── references/
             ├── algorithm-facts.md     # Canonical [FACT] list with repo citations
@@ -108,15 +98,15 @@ x-post-optimizer/
 
 ## Source attribution
 
-Primary source: [xai-org/x-algorithm](https://github.com/xai-org/x-algorithm), licensed under Apache 2.0. This plugin quotes architectural facts and signal names from the README and source files — facts are not copyrightable, and the plugin contains no code or substantial text passages from the upstream repository.
+Primary source: [xai-org/x-algorithm](https://github.com/xai-org/x-algorithm), licensed under Apache 2.0. This skill quotes architectural facts and signal names from the README and source files — facts are not copyrightable, and the skill contains no code or substantial text passages from the upstream repository.
 
 For legacy context only: [twitter/the-algorithm](https://github.com/twitter/the-algorithm) (2023 release, different system).
 
 ## Disclaimer
 
-This plugin is **not affiliated with, endorsed by, or sponsored by X Corp, xAI, or any subsidiary**. "X", "Twitter", "Phoenix", "Thunder", and "Grok" are trademarks of their respective owners and are used here in a nominative, descriptive sense only.
+This skill is **not affiliated with, endorsed by, or sponsored by X Corp, xAI, or any subsidiary**. "X", "Twitter", "Phoenix", "Thunder", and "Grok" are trademarks of their respective owners and are used here in a nominative, descriptive sense only.
 
-Algorithmic performance is probabilistic. The plugin helps reason about *which* signals a post can target and *why*, based on the published architecture — but it cannot predict whether any specific post will perform, because (a) concrete weights are non-public, (b) the ranker is conditioned on user-specific engagement history, and (c) the underlying transformer is stochastic over its hash-based embeddings.
+Algorithmic performance is probabilistic. The skill helps reason about *which* signals a post can target and *why*, based on the published architecture — but it cannot predict whether any specific post will perform, because (a) concrete weights are non-public, (b) the ranker is conditioned on user-specific engagement history, and (c) the underlying transformer is stochastic over its hash-based embeddings.
 
 ## License
 
@@ -130,4 +120,4 @@ Issues and pull requests welcome. Particularly valuable contributions:
 - Counterexamples where a `[HEURISTIC]` is empirically wrong (with evidence)
 - Additional format playbooks (e.g., for X Spaces transcripts, X Articles)
 
-Please preserve the epistemic-labeling discipline — that's the whole point of the plugin.
+Please preserve the epistemic-labeling discipline — that's the whole point of the skill.
