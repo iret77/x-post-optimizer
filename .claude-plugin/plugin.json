@@ -1,0 +1,19 @@
+{
+  "name": "x-post-optimizer",
+  "version": "0.2.0",
+  "description": "Write and review X (Twitter) posts grounded in the open-source xai-org/x-algorithm code. Generates drafts in any X format (short, long, thread, reply, quote) and reviews existing drafts against an algorithm-derived checklist. Built around strict separation of [FACT] (verifiable from the repo), [INFERENCE] (logically derivable), and [HEURISTIC] (creator practice without code backing). Deliberately refuses to quote concrete weight multipliers — those are not in the public release.",
+  "author": {
+    "name": "iret77"
+  },
+  "homepage": "https://github.com/iret77/x-post-optimizer",
+  "license": "MIT",
+  "keywords": [
+    "x-twitter",
+    "tweet",
+    "social-media",
+    "content-creation",
+    "algorithm",
+    "recommendation-system",
+    "for-you-feed"
+  ]
+}
