@@ -86,4 +86,4 @@ Two worked examples showing the expected output format for generate and review m
 
 **Overall:** The original is classic "vague reply-bait" and effectively targets only P(reply), and weakly at that. The rewrite opens 4-5 signal axes. Expected lift is *substantial*, but performance stays probabilistic — we don't know the exact weights.
 
-**Honesty note:** Reviewer recommendations are inferences from the 15 Phoenix targets, not from their concrete weights (those are not public). Actual performance also depends on your author context and time-of-day dynamics — both outside what we can know from the open-source code.
+**Honesty note:** Reviewer recommendations are inferences from the 15 Phoenix targets, not from their concrete weights (those are not public). Actual performance also depends on your author context — your engagement history that Phoenix has learned. Time-of-day, posting frequency, and verified-account effects may also matter, but the open-source code is silent on them — neither confirming nor denying.

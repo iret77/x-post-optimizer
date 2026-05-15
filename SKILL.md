@@ -44,6 +44,16 @@ If the user hasn't specified, ask. The format choice changes which algorithm sig
 - Format-specific structural patterns
 - Common mistakes that depress scoring
 
+**Step 3.5 — Voice source (optional).** Tone-matching is *not* algorithm-grounded; it's stylistic. Offer this step only if (a) the user explicitly wants drafts in a specific voice — their own or someone else's — or (b) generic voice would clearly miss the brief. Three sources, in preference order:
+
+1. **Reference X account.** If X tools are available in your environment (e.g. an X/Twitter MCP that can fetch a user's timeline), ask for a handle. Fetch ~20–40 of the account's original posts (skip reposts; skip replies for short-post mode) and extract patterns: hook structures, sentence length, vocabulary, punctuation habits, what they consistently DO and DON'T do.
+2. **Pasted samples.** If X tools are not available, ask the user to paste 3–5 representative posts from the account they want to mirror.
+3. **Persona description.** Fallback. Less precise, still usable.
+
+When voice patterns inform a draft, tag those choices `[STYLE-MATCH]` — separately from the algorithm tags. This keeps the epistemic discipline intact: `[FACT/INFERENCE/HEURISTIC]` are algorithm-derived; `[STYLE-MATCH]` is mimicry-derived and carries no claim about ranking performance.
+
+If the user hasn't asked for voice-matching, skip this step entirely — a neutral, clear voice is fine and doesn't dilute the algorithm-grounded workflow.
+
 **Step 4 — Draft or review.**
 - Generate mode: produce 1-3 variants. For each, give a 2-3 line trace ("This opens with a question to bid for P(reply) — [INFERENCE from the 15 predicted actions in Phoenix]").
 - Review mode: walk `references/review-checklist.md` in order. Flag each miss with a [FACT/INFERENCE/HEURISTIC] tag and a suggested rewrite.
@@ -79,6 +89,7 @@ Some claims widely repeated online are **not in the 2026 open-source release** a
 
 **Algorithmic trace:**
 - <design choice> — [FACT/INFERENCE/HEURISTIC]: <2-line explanation>
+- <voice choice, if voice-matching was used> — [STYLE-MATCH]: <what pattern from the reference you mirrored>
 - ...
 
 **Not optimized for:** <signals this draft doesn't target, and why>
