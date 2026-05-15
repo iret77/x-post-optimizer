@@ -41,6 +41,7 @@ These are [FACT] from the repo's filter list. Any "yes" here means the post neve
 - [ ] **One thesis per post.** Multiple unrelated ideas dilute engagement targeting. [INFERENCE — Phoenix scores each post independently, so each post should optimize for its own engagement set.]
 - [ ] **Standalone comprehensibility.** Out-of-network discovery means strangers will see this. Can a cold viewer parse it? [INFERENCE from P(follow_author) being a positive signal.]
 - [ ] **Length matches format.** Short posts shouldn't try to be long posts; long posts shouldn't have unstructured walls of text.
+- [ ] **Announcement order (tool/product/feature posts).** Does the structure go Hook → Benefit → Differentiator → CTA? Leading with WHAT the thing IS (rather than what it lets the reader DO) kills engagement — no problem stated, no reaction triggered. [HEURISTIC from real-world testing] + [INFERENCE from the linear weighted-sum scoring]
 
 ## E. Author-context fit
 

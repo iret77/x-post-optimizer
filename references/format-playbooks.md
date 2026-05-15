@@ -28,6 +28,17 @@ The default. Has to do everything in one breath.
 
 Targets: P(favorite) [agreement], P(reply) [disagreement or examples], P(quote) [signal-boosting with own twist]. Standalone-readable, so P(follow_author) is plausible.
 
+### Special case: Tool / product / feature announcement
+
+Empirically (from real-world post-mortems of this skill's drafts), tool and product posts have a sharp failure mode: **leading with WHAT the thing is, instead of WHAT it lets the reader do**. A post that opens with "Tool X is a Y for doing Z" gives readers nothing to react to — no problem stated, no curiosity hooked. Phoenix predicts low P(reply), P(quote), P(repost) on it, and that depresses the author's downstream ranking too.
+
+**Order that works:** Hook → Benefit (what you can now do) → Differentiator (why this, not the alternative) → CTA.
+**Order that fails:** Hook → What the tool is → Benefit (too late, reader already scrolled).
+
+[HEURISTIC from real-world testing of this skill] + [INFERENCE: the linear weighted-sum scoring punishes posts that target only P(favorite), since you need multiple positive axes to compete]
+
+**Quick self-test before posting:** Does line 2 answer "what can I do with this that I couldn't before, and why should I care?" If not, restructure.
+
 ---
 
 ## Long Post (Premium, up to 25k chars)
