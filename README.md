@@ -4,9 +4,9 @@ A Claude skill that drafts and reviews posts for X (Twitter) based on the open-s
 
 Unlike most "X algorithm" guides floating around, this skill is built around a strict epistemic rule: every recommendation is labeled as one of three categories.
 
-- **[FAKT]** — directly verifiable from the xai-org/x-algorithm source code or README
-- **[INFERENZ]** — logically derivable from facts, but not stated outright in the repo
-- **[HEURISTIK]** — established creator practice, not in the code; plausible but unverified
+- **[FACT]** — directly verifiable from the xai-org/x-algorithm source code or README
+- **[INFERENCE]** — logically derivable from facts, but not stated outright in the repo
+- **[HEURISTIC]** — established creator practice, not in the code; plausible but unverified
 
 Specifically, the skill **refuses to quote concrete weight multipliers** like "Retweet = 20×" or "Reply = 13.5×" — those numbers are not in the 2026 open-source release. The `params` module containing actual weights was deliberately excluded by xAI for security reasons. Numbers you see online almost always trace back to the 2023 `twitter/the-algorithm` repo (a different system) or to guesswork.
 
@@ -17,7 +17,7 @@ Two modes:
 - **Generate** — give it a topic or rough idea, get drafts in any X format (short post, long post, thread, reply, quote) with an algorithmic trace explaining which engagement signals each design choice targets.
 - **Review** — give it an existing draft, get a structured review against an algorithm-derived checklist with concrete rewrite suggestions.
 
-Triggers on requests like "write a tweet", "review my X post", "schreib einen X-Post zu X", "wird das auf X performen", "thread schreiben", and similar.
+Triggers on requests like "write a tweet", "review my X post", "draft a thread on X", "will this perform in the For You feed", "score this tweet", and similar.
 
 ## What it knows (and what it doesn't)
 
@@ -28,7 +28,7 @@ Grounded in the published xai-org/x-algorithm code:
 - The 10 pre-scoring filters and 2 post-selection filters
 - Architecture: Thunder (in-network) + Phoenix Retrieval (out-of-network) → Phoenix transformer ranker with candidate isolation → Author Diversity scoring
 
-Not grounded — flagged as `[HEURISTIK]` if mentioned:
+Not grounded — flagged as `[HEURISTIC]` if mentioned:
 
 - Concrete weight values (excluded from open-source release)
 - Sentiment-based suppression (not in the repo)
@@ -59,10 +59,10 @@ Restart your Claude session. The skill auto-triggers on relevant prompts.
 x-post-optimizer/
 ├── SKILL.md                       # Manifest + workflow
 └── references/
-    ├── algorithm-facts.md         # Canonical [FAKT] list with repo citations
+    ├── algorithm-facts.md         # Canonical [FACT] list with repo citations
     ├── format-playbooks.md        # Per-format guidance (short, long, thread, reply, quote)
     ├── review-checklist.md        # Six-section review checklist
-    └── example-traces.md          # Two worked examples (DE)
+    └── example-traces.md          # Two worked examples
 ```
 
 ## Source attribution
@@ -85,8 +85,8 @@ Algorithmic performance is probabilistic. The skill helps reason about *which* s
 
 Issues and pull requests welcome. Particularly valuable contributions:
 
-- New `[FAKT]` entries verifiable against later updates of the upstream repo
-- Counterexamples where a `[HEURISTIK]` is empirically wrong (with evidence)
+- New `[FACT]` entries verifiable against later updates of the upstream repo
+- Counterexamples where a `[HEURISTIC]` is empirically wrong (with evidence)
 - Additional format playbooks (e.g., for X Spaces transcripts, X Articles)
 
 Please preserve the epistemic-labeling discipline — that's the whole point of the skill.

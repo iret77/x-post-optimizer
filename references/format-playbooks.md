@@ -12,15 +12,15 @@ The default. Has to do everything in one breath.
 ### Structural patterns
 
 - **Hook → payoff in one beat.** A reader decides in ~1 second whether to engage. The first 8-10 words carry the load.
-- **One claim, not three.** [INFERENZ] Posts that try to compress multiple ideas usually trigger a like at best; one sharp claim invites reply/quote because there's something specific to respond to.
-- **Reply-bait that isn't trash.** A question or unfinished thought invites P(reply). Strong opinion invites P(quote). Both are weighted positives. [INFERENZ from the 15 signals]
-- **Standalone comprehensibility.** [INFERENZ] Since P(follow_author) is a positive signal, the post should make sense to someone who has never seen your other posts — they need enough context to decide you're worth following.
+- **One claim, not three.** [INFERENCE] Posts that try to compress multiple ideas usually trigger a like at best; one sharp claim invites reply/quote because there's something specific to respond to.
+- **Reply-bait that isn't trash.** A question or unfinished thought invites P(reply). Strong opinion invites P(quote). Both are weighted positives. [INFERENCE from the 15 signals]
+- **Standalone comprehensibility.** [INFERENCE] Since P(follow_author) is a positive signal, the post should make sense to someone who has never seen your other posts — they need enough context to decide you're worth following.
 
 ### Common mistakes
 
 - Burying the hook behind a setup ("So I was thinking about..."). Cuts dead weight.
 - Vague subtweets — no entity to engage with means no reply, no quote, no share.
-- Off-platform link as the entire payload — [HEURISTIK] community lore says links suppress reach; the repo doesn't confirm this, but P(click) being positive while P(dwell) drops (link click = leaving platform) suggests a *real* tradeoff.
+- Off-platform link as the entire payload — [HEURISTIC] community lore says links suppress reach; the repo doesn't confirm this, but P(click) being positive while P(dwell) drops (link click = leaving platform) suggests a *real* tradeoff.
 
 ### Example trace
 
@@ -39,10 +39,10 @@ A different game. The reader has committed to the unfold; now dwell time matters
 
 ### Structural patterns
 
-- **Lead with the conclusion.** [HEURISTIK + INFERENZ from dwell] The first paragraph has to earn the unfold. If a reader scrolls past after seeing only the preview, you got the worst case (no dwell signal, possible P(not_interested) if it looked spammy).
-- **Internal hooks every ~500 chars.** [HEURISTIK] Sub-headlines, numbered breaks, or short punchy lines break the wall of text and reset attention. There's no [FAKT] about this in the repo, but dwell_time being a continuous signal makes "did they actually read?" matter.
+- **Lead with the conclusion.** [HEURISTIC + INFERENCE from dwell] The first paragraph has to earn the unfold. If a reader scrolls past after seeing only the preview, you got the worst case (no dwell signal, possible P(not_interested) if it looked spammy).
+- **Internal hooks every ~500 chars.** [HEURISTIC] Sub-headlines, numbered breaks, or short punchy lines break the wall of text and reset attention. There's no [FACT] about this in the repo, but dwell_time being a continuous signal makes "did they actually read?" matter.
 - **One thesis, full argument.** Long form is where you finish the thought a short post can only gesture at.
-- **Quotable nuggets sprinkled.** [INFERENZ] Lines that are screenshot-worthy invite P(share_via_copy_link) and P(quote).
+- **Quotable nuggets sprinkled.** [INFERENCE] Lines that are screenshot-worthy invite P(share_via_copy_link) and P(quote).
 
 ### Common mistakes
 
@@ -60,14 +60,14 @@ A thread is multiple posts. The algorithm ranks each post independently (candida
 
 ### Structural patterns
 
-- **Post 1 is a self-contained promise.** [INFERENZ from candidate isolation] Since Phoenix scores each post separately, post 1's ranking determines whether the rest of the thread gets seen at all. It must work as a standalone hook.
-- **Numbered ("1/", "2/") signals "more coming"** — [HEURISTIK] not in the repo, but matches established creator practice.
+- **Post 1 is a self-contained promise.** [INFERENCE from candidate isolation] Since Phoenix scores each post separately, post 1's ranking determines whether the rest of the thread gets seen at all. It must work as a standalone hook.
+- **Numbered ("1/", "2/") signals "more coming"** — [HEURISTIC] not in the repo, but matches established creator practice.
 - **Each post should earn its own engagement.** A thread that's actually a long post awkwardly split across tweets won't get individual posts engaged with. Make every post quotable on its own.
-- **Last post: CTA or callback.** [HEURISTIK] Reply-bait ("which one resonated?"), repost-bait ("repost the first if you found this useful"), or follow-bait ("more like this — follow"). These map to P(reply), P(repost), P(follow_author) respectively.
+- **Last post: CTA or callback.** [HEURISTIC] Reply-bait ("which one resonated?"), repost-bait ("repost the first if you found this useful"), or follow-bait ("more like this — follow"). These map to P(reply), P(repost), P(follow_author) respectively.
 
 ### Common mistakes
 
-- Post 1 says "Here are 7 lessons I learned about X 🧵". [INFERENZ + HEURISTIK] No payoff in post 1 itself — the model can't predict high engagement on the first post because there's nothing to engage with. Lead with the *most surprising* lesson instead and use that as the hook.
+- Post 1 says "Here are 7 lessons I learned about X 🧵". [INFERENCE + HEURISTIC] No payoff in post 1 itself — the model can't predict high engagement on the first post because there's nothing to engage with. Lead with the *most surprising* lesson instead and use that as the hook.
 - All posts the same shape. Variety in length (some short, some with media) gives the algorithm more signal types to work with.
 
 ---
@@ -82,12 +82,12 @@ Replies are competing with other replies in a conversation. Algorithmic dynamics
 ### Structural patterns
 
 - **Add information, not agreement.** "Great point!" type replies do not surface. A reply that *extends* the original post (counter-example, missing nuance, related data) is what gets seen by people outside the conversation.
-- **Be quotable.** [INFERENZ] If your reply is sharper than the original, P(quote) becomes plausible — and a quoted reply often outperforms the original.
-- **Reply to small accounts you actually engage with.** [INFERENZ from "engagement sequence" learning] The transformer learns your engagement patterns; consistent replying to the same niche reinforces that you're "in" that niche, helping out-of-network discovery for your own posts.
+- **Be quotable.** [INFERENCE] If your reply is sharper than the original, P(quote) becomes plausible — and a quoted reply often outperforms the original.
+- **Reply to small accounts you actually engage with.** [INFERENCE from "engagement sequence" learning] The transformer learns your engagement patterns; consistent replying to the same niche reinforces that you're "in" that niche, helping out-of-network discovery for your own posts.
 
 ### Common mistakes
 
-- Reply-guying — high-volume low-substance replies on big accounts. [INFERENZ] If those replies generate P(not_interested) or P(mute_author) from other viewers, that's a measured negative signal feeding back into your account's ranking.
+- Reply-guying — high-volume low-substance replies on big accounts. [INFERENCE] If those replies generate P(not_interested) or P(mute_author) from other viewers, that's a measured negative signal feeding back into your account's ranking.
 - One-word replies that add nothing. No engagement axis is meaningfully targeted.
 
 ---
@@ -101,12 +101,12 @@ The most underused format. You inherit the original post's reach if your quote p
 ### Structural patterns
 
 - **Add a take, not just an "agree".** "This." with a quoted post is a wasted slot. State *why*, *what's missing*, or *what it implies*.
-- **Make your text strong enough to stand without the quote.** [INFERENZ] If the original gets deleted or hidden, your quote should still make sense as a standalone post.
+- **Make your text strong enough to stand without the quote.** [INFERENCE] If the original gets deleted or hidden, your quote should still make sense as a standalone post.
 - **Steelman or sharpen.** The two highest-performing quote modes: (a) "This is the best version of X argument" or (b) "Almost — but this misses Y". Both invite P(reply) from both sides.
 
 ### Common mistakes
 
-- Quote-posting to dunk on small accounts — [INFERENZ] high probability of P(block_author), P(mute_author), P(report) from viewers sympathetic to the target. Negative signals carry weight.
+- Quote-posting to dunk on small accounts — [INFERENCE] high probability of P(block_author), P(mute_author), P(report) from viewers sympathetic to the target. Negative signals carry weight.
 - Quote-posting your own posts as a "boost" — no new information, audience overlap is high, returns are weak.
 
 ---

@@ -6,84 +6,84 @@ Two worked examples showing the expected output format for generate and review m
 
 ## Example 1 — Generate mode (short post)
 
-**User prompt:** "Schreib mir einen X-Post darüber, dass die meisten 'AI-Agenten' nur Cron-Jobs mit besserer PR sind."
+**User prompt:** "Write me an X post saying that most 'AI agents' are just cron jobs with better PR."
 
 **Output:**
 
 ### Draft 1: Provocation with a quotable nugget
 
-> Die meisten "AI Agents" da draußen sind Cron-Jobs mit besserer PR.
+> Most "AI agents" out there are cron jobs with better PR.
 >
-> Trigger → API-Call → if/else → done.
+> Trigger → API call → if/else → done.
 >
-> Wo bitte ist die agency?
+> Where's the agency, exactly?
 
 **Algorithmic trace:**
-- Hook in der ersten Zeile als sharp claim — [HEURISTIK]: pattern-interrupt funktioniert für P(favorite) und P(quote). Standalone-comprehensible, also auch [INFERENZ] für P(follow_author).
-- Mittellinie ist quotable für sich allein — [INFERENZ aus P(share_via_copy_link)]: Screenshot-fähige Zeile.
-- Schlussfrage triggert P(reply) — [INFERENZ aus den 15 predicted actions]: Fragen sind das direkteste Reply-Bait.
+- Sharp claim as opening hook — [HEURISTIC]: pattern-interrupt phrasing targets P(favorite) and P(quote). Standalone-comprehensible, so [INFERENCE] for P(follow_author) too.
+- Middle line is independently quotable — [INFERENCE from P(share_via_copy_link)]: screenshot-worthy single line.
+- Closing question triggers P(reply) — [INFERENCE from the 15 predicted actions]: open questions are the most direct reply-bait.
 
 **Not optimized for:**
-- P(dwell) — zu kurz zum Verweilen. Wäre nur in Long-Post-Form möglich.
-- P(click) — kein Link bewusst nicht enthalten, da off-platform Klicks Dwell drücken würden.
+- P(dwell) — too short to dwell on. Would require long-post format.
+- P(click) — deliberately no link; off-platform clicks would suppress dwell time.
 
 ### Draft 2: Definition framing
 
-> "AI Agent" heißt heute: ein Cron-Job, der manchmal halluziniert.
+> "AI agent" now means: a cron job that occasionally hallucinates.
 
 **Algorithmic trace:**
-- Kompakter, Sarkasmus-getragen — [HEURISTIK]: Definitions-Format ("X heißt heute: Y") performt bei tech-Publikum überdurchschnittlich.
-- Geringeres Reply-Bait als Draft 1 (kein Hook auf Antwort) — primär P(favorite) und P(repost). [INFERENZ]
-- Sehr Quote-tauglich für Leute mit eigener Take ("Bei mir ist es nicht so..."). [INFERENZ aus P(quote)]
+- Compact, sarcasm-carried — [HEURISTIC]: definition-framing ("X now means: Y") performs above average with tech audiences.
+- Less reply-bait than Draft 1 (no hook for response) — primarily targets P(favorite) and P(repost). [INFERENCE]
+- Highly quotable for people with their own take ("Not in my case..."). [INFERENCE from P(quote)]
 
 **Not optimized for:**
-- P(reply) — keine offene Frage.
-- P(follow_author) für Cold-Viewer — knapper, weniger Kontext über den Author.
+- P(reply) — no open question.
+- P(follow_author) for cold viewers — shorter, less author context.
 
 ---
 
-**Honesty note:** Diese Drafts werden mit hoher Varianz performen. Die offen-gelegte Phoenix-Architektur sagt uns *welche* Signale gewichtet werden, aber nicht *wie stark*. Die konkreten Gewichtszahlen sind aus dem Open-Source-Drop ausgenommen. Außerdem ist Author-Context (deine bisherige Engagement-Historie) ein Faktor, den ich nicht kenne — Posts, die zu deinem etablierten Niche passen, ranken zuverlässiger.
+**Honesty note:** These drafts will perform with high variance. The disclosed Phoenix architecture tells us *which* signals are weighted, but not *how strongly*. The concrete weight values are excluded from the open-source drop. Author context (your previous engagement history) is also a factor I don't know — posts that fit your established niche rank more reliably.
 
 ---
 
 ## Example 2 — Review mode (short post)
 
-**User prompt:** "Review das mal: 'Heute hatte ich ein interessantes Gespräch mit einem Kunden über AI Adoption. Es gibt viele Missverständnisse. Was sind eure Erfahrungen?'"
+**User prompt:** "Review this: 'Had an interesting conversation with a customer about AI adoption today. There are a lot of misconceptions. What are your experiences?'"
 
 **Output:**
 
-### Review of: Kundengesprächs-Post mit Reply-Frage
+### Review of: customer-conversation post with reply question
 
 **Strengths** (mapped to algorithm signals):
-- Frage am Ende — bidet für P(reply). [FAKT]: P(reply) ist eines der 15 positiven Engagement-Targets.
+- Closing question — bids for P(reply). [FACT]: P(reply) is one of the 15 positive engagement targets.
 
 **Weaknesses** (mapped to algorithm signals):
 
-- **Hook fehlt komplett** — [HEURISTIK]: "Heute hatte ich ein interessantes Gespräch" ist generischer Setup ohne payoff in den ersten 8-10 Wörtern. Cold-Viewer scrollen vorbei, was [INFERENZ] zu schwachen P(favorite) und P(reply) Predictions führt.
-  Suggested rewrite-Anker: Mach das *Missverständnis selbst* zur ersten Zeile.
+- **Hook is missing entirely** — [HEURISTIC]: "Had an interesting conversation" is generic setup with no payoff in the first 8-10 words. Cold viewers scroll past, which [INFERENCE] yields weak P(favorite) and P(reply) predictions.
+  Rewrite anchor: make the *misconception itself* the first line.
 
-- **"Interessantes Gespräch" ohne Inhalt** — [INFERENZ]: Keine konkrete Substanz im Post. P(quote) und P(share) sind nahezu unmöglich, weil nichts da ist, was man teilen oder weiterspinnen könnte.
-  Suggested rewrite-Anker: Nenn ein *konkretes* Missverständnis.
+- **"Interesting conversation" without content** — [INFERENCE]: no concrete substance in the post. P(quote) and P(share) are nearly impossible because there's nothing to amplify or extend.
+  Rewrite anchor: name a *specific* misconception.
 
-- **Vage Frage** — [HEURISTIK]: "Was sind eure Erfahrungen?" ist niedrigschwellig genug, dass sie Replies bekommen *könnte*, aber die Replies werden ebenso vague. Spezifische Fragen liefern bessere Reply-Substanz, die wiederum P(reply) auf deine Replies treibt.
-  Suggested rewrite-Anker: Frag nach einem konkreten Szenario.
+- **Vague question** — [HEURISTIC]: "What are your experiences?" is low-friction enough that it *might* get replies, but the replies will be equally vague. Specific questions yield substantive replies, which in turn drive P(reply) on your replies.
+  Rewrite anchor: ask about a concrete scenario.
 
-- **P(follow_author) schwach** — [INFERENZ]: Ein Cold-Viewer lernt aus diesem Post nichts über deine Expertise. Kein Grund zu folgen.
+- **P(follow_author) is weak** — [INFERENCE]: a cold viewer learns nothing about your expertise from this post. No reason to follow.
 
 **Suggested rewrite:**
 
-> Die häufigste AI-Adoption-Falle, der ich diese Woche begegnet bin:
-> Teams führen Tools ein, bevor sie definieren, *was nicht funktioniert hat*.
-> Resultat: ein RAG-Setup, das die Symptome eines Prozessproblems patcht.
+> The most common AI-adoption trap I saw this week:
+> Teams introduce tools before defining *what was actually broken*.
+> Result: a RAG setup that patches the symptoms of a process problem.
 >
-> Was war eure größte "wir hätten besser hinschauen sollen"-AI-Investition?
+> What was your biggest "we should have looked closer first" AI investment?
 
-**Trace der Rewrite-Entscheidungen:**
-- Hook ist ein konkretes Pattern in Zeile 1 — P(favorite) und P(reply) targets klar definiert. [INFERENZ]
-- Zeile 2-3 liefern Substanz, die quotable ist — P(quote) und P(share). [INFERENZ aus den separaten Signal-Achsen]
-- Schlussfrage ist spezifisch genug für substantielle Replies — P(reply), und Reply-Threads kompoundieren P(reply)-Signale. [INFERENZ]
-- Standalone-comprehensible für Cold-Viewer — P(follow_author) wird targetbar. [INFERENZ]
+**Trace of rewrite decisions:**
+- Hook is a concrete pattern in line 1 — P(favorite) and P(reply) targets clearly defined. [INFERENCE]
+- Lines 2-3 deliver substance that's quotable — P(quote) and P(share). [INFERENCE from the separate signal axes]
+- Closing question is specific enough for substantive replies — P(reply), and reply threads compound P(reply) signals. [INFERENCE]
+- Standalone-comprehensible for cold viewers — P(follow_author) becomes targetable. [INFERENCE]
 
-**Overall:** Original-Post ist klassisches "Vague Reply-Bait" und targetiert effektiv nur P(reply), und das schwach. Rewrite öffnet 4-5 Signal-Achsen. Erwartung ist *deutlich* besser, aber Performance bleibt probabilistisch — wir kennen die exakten Gewichte nicht.
+**Overall:** The original is classic "vague reply-bait" and effectively targets only P(reply), and weakly at that. The rewrite opens 4-5 signal axes. Expected lift is *substantial*, but performance stays probabilistic — we don't know the exact weights.
 
-**Honesty note:** Reviewer-Empfehlungen sind Inferenzen aus den 15 Phoenix-Targets, nicht aus deren konkreten Gewichten (die sind nicht öffentlich). Konkrete Performance hängt zudem von deinem Author-Context und der Tagesdynamik ab — beides außerhalb dessen, was wir aus dem Open-Source-Code wissen können.
+**Honesty note:** Reviewer recommendations are inferences from the 15 Phoenix targets, not from their concrete weights (those are not public). Actual performance also depends on your author context and time-of-day dynamics — both outside what we can know from the open-source code.

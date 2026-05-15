@@ -1,6 +1,6 @@
 ---
 name: x-post-optimizer
-description: Write or review posts for X (Twitter) so they perform well in the For You feed, grounded in the open-source xai-org/x-algorithm code (released 2026). Use whenever the user wants to draft a tweet, X post, long post, thread, reply, or quote post — also for reviewing/improving existing X drafts, asking "how do I make this perform on X", "wird das auf X gut laufen", "X-Algorithmus", "For You Feed", "tweet schreiben", "is this on-brand for the X algorithm", "score this tweet", or wants engagement-optimized X content. This skill is the right call even when the user doesn't mention "algorithm" — any request to produce or improve a post intended for X should pull this in.
+description: Write or review posts for X (Twitter) so they perform well in the For You feed, grounded in the open-source xai-org/x-algorithm code (released 2026). Use whenever the user wants to draft a tweet, X post, long post, thread, reply, or quote post — also for reviewing or improving existing X drafts, asking "how do I make this perform on X", "score this tweet", "is this on-brand for the X algorithm", "will this hit the For You feed", or wants engagement-optimized X content. This skill is the right call even when the user doesn't mention "algorithm" — any request to produce or improve a post intended for X should pull this in.
 ---
 
 # X Post Optimizer
@@ -11,24 +11,24 @@ This skill helps draft and review posts for X (Twitter) based on the **open-sour
 
 The X algorithm has been partially open-sourced but **not all parameters are public**. To stay honest, every recommendation in this skill is labeled:
 
-- **[FAKT]** — directly verifiable from xai-org/x-algorithm source code or README
-- **[INFERENZ]** — logically derivable from [FAKT] but not stated outright in the repo
-- **[HEURISTIK]** — established creator practice, not in the code; treat as plausible but unverified
+- **[FACT]** — directly verifiable from xai-org/x-algorithm source code or README
+- **[INFERENCE]** — logically derivable from [FACT] but not stated outright in the repo
+- **[HEURISTIC]** — established creator practice, not in the code; treat as plausible but unverified
 
-When generating or reviewing, **never present a [HEURISTIK] as a [FAKT]**. If asked "warum sollte ich das tun", trace it back to which category it belongs to. This is non-negotiable — the value of this skill collapses if the labels blur.
+When generating or reviewing, **never present a [HEURISTIC] as a [FACT]**. If asked "why should I do this", trace it back to which category it belongs to. This is non-negotiable — the value of this skill collapses if the labels blur.
 
 ## How to invoke
 
 Two modes. Pick based on user intent — ask if unclear:
 
-1. **Generate mode** — user gives a topic, idea, or rough text and wants a draft. Output: one or more drafts in the requested format, plus a short "why this should work" trace showing which [FAKT]/[INFERENZ]/[HEURISTIK] each design choice rests on.
+1. **Generate mode** — user gives a topic, idea, or rough text and wants a draft. Output: one or more drafts in the requested format, plus a short "why this should work" trace showing which [FACT]/[INFERENCE]/[HEURISTIC] each design choice rests on.
 2. **Review mode** — user gives an existing draft and wants feedback. Output: a structured review using the checklist in `references/review-checklist.md`, with concrete rewrite suggestions for any item flagged.
 
 If the user asks for both, do generate first, then review the result.
 
 ## Workflow
 
-**Step 1 — Load the algorithm facts.** Read `references/algorithm-facts.md`. This is the canonical [FAKT] list. Do not paraphrase from memory; the facts are precise and over-paraphrasing has caused the "Retweet × 20" myth that this skill is built to avoid.
+**Step 1 — Load the algorithm facts.** Read `references/algorithm-facts.md`. This is the canonical [FACT] list. Do not paraphrase from memory; the facts are precise and over-paraphrasing has caused the "Retweet × 20" myth that this skill is built to avoid.
 
 **Step 2 — Determine format.** X supports several text formats with different algorithmic profiles:
 - Short post (≤280 chars, default)
@@ -45,8 +45,8 @@ If the user hasn't specified, ask. The format choice changes which algorithm sig
 - Common mistakes that depress scoring
 
 **Step 4 — Draft or review.**
-- Generate mode: produce 1-3 variants. For each, give a 2-3 line trace ("This opens with a question to bid for P(reply) — [INFERENZ from the 15 predicted actions in Phoenix]").
-- Review mode: walk `references/review-checklist.md` in order. Flag each miss with a [FAKT/INFERENZ/HEURISTIK] tag and a suggested rewrite.
+- Generate mode: produce 1-3 variants. For each, give a 2-3 line trace ("This opens with a question to bid for P(reply) — [INFERENCE from the 15 predicted actions in Phoenix]").
+- Review mode: walk `references/review-checklist.md` in order. Flag each miss with a [FACT/INFERENCE/HEURISTIC] tag and a suggested rewrite.
 
 **Step 5 — Honest output.** End every response with:
 - A short note on what the algorithm does *not* tell us (e.g., concrete weight values are not in the open-source release)
@@ -56,14 +56,14 @@ If the user hasn't specified, ask. The format choice changes which algorithm sig
 
 Some claims widely repeated online are **not in the 2026 open-source release** and should not be presented as facts:
 
-- Specific weight multipliers like "Retweet = 20×", "Reply = 13.5×", "Block = -74×". The `params` module with concrete weights is **excluded** from the open-source repo for security reasons. Numbers from third-party blogs typically trace back to the 2023 Twitter `the-algorithm` repo (different system) or to guesswork. If a user insists on numbers, label them explicitly: "[HEURISTIK, aus 2023-Legacy-Code, möglicherweise veraltet]".
+- Specific weight multipliers like "Retweet = 20×", "Reply = 13.5×", "Block = -74×". The `params` module with concrete weights is **excluded** from the open-source repo for security reasons. Numbers from third-party blogs typically trace back to the 2023 Twitter `the-algorithm` repo (different system) or to guesswork. If a user insists on numbers, label them explicitly: "[HEURISTIC, aus 2023-Legacy-Code, möglicherweise veraltet]".
 - "Sentiment analysis suppresses negative tones." Not in the repo. There is a `VFFilter` that removes deleted/spam/violence/gore content post-selection, but no sentiment ranker is documented.
-- "External links are penalized." Not in the repo. `P(click)` is one of the predicted actions, suggesting link-clicks are a positive signal. The "links hurt reach" claim may be a [HEURISTIK] based on dwell-time tradeoffs but is not verifiable from the code.
-- Time-of-day, post frequency, blue-check effects. Not addressed by the open-source ranker. Mention only if the user asks, labeled clearly as [HEURISTIK].
+- "External links are penalized." Not in the repo. `P(click)` is one of the predicted actions, suggesting link-clicks are a positive signal. The "links hurt reach" claim may be a [HEURISTIC] based on dwell-time tradeoffs but is not verifiable from the code.
+- Time-of-day, post frequency, blue-check effects. Not addressed by the open-source ranker. Mention only if the user asks, labeled clearly as [HEURISTIC].
 
 ## Reference files
 
-- `references/algorithm-facts.md` — Canonical [FAKT] list from the xai-org/x-algorithm repo. Read first.
+- `references/algorithm-facts.md` — Canonical [FACT] list from the xai-org/x-algorithm repo. Read first.
 - `references/format-playbooks.md` — Per-format guidance for short post, long post, thread, reply, quote.
 - `references/review-checklist.md` — Structured review checklist for review mode.
 - `references/example-traces.md` — Worked examples of generate-mode and review-mode outputs.
@@ -78,7 +78,7 @@ Some claims widely repeated online are **not in the 2026 open-source release** a
 <the actual post text, ready to copy>
 
 **Algorithmic trace:**
-- <design choice> — [FAKT|INFERENZ|HEURISTIK]: <2-line explanation>
+- <design choice> — [FACT|INFERENCE|HEURISTIC]: <2-line explanation>
 - ...
 
 **Not optimized for:** <signals this draft doesn't target, and why>
@@ -90,10 +90,10 @@ Some claims widely repeated online are **not in the 2026 open-source release** a
 ## Review of: <short description of the draft>
 
 **Strengths** (mapped to algorithm signals):
-- <strength> — [FAKT|INFERENZ|HEURISTIK]
+- <strength> — [FACT|INFERENCE|HEURISTIC]
 
 **Weaknesses** (mapped to algorithm signals):
-- <issue> — suggested rewrite: "<new text>" — [FAKT|INFERENZ|HEURISTIK]
+- <issue> — suggested rewrite: "<new text>" — [FACT|INFERENCE|HEURISTIC]
 
 **Overall:** <one paragraph>
 ```

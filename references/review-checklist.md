@@ -1,19 +1,19 @@
 # Review Checklist
 
-Walk this list in order when in review mode. For every flagged item, give a [FAKT/INFERENZ/HEURISTIK] tag and a concrete suggested rewrite. Don't just list problems — show the fix.
+Walk this list in order when in review mode. For every flagged item, give a [FACT/INFERENCE/HEURISTIC] tag and a concrete suggested rewrite. Don't just list problems — show the fix.
 
 ## A. Filter risk (would the post get dropped before scoring?)
 
-These are [FAKT] from the repo's filter list. Any "yes" here means the post never reaches the scorer at all.
+These are [FACT] from the repo's filter list. Any "yes" here means the post never reaches the scorer at all.
 
-- [ ] **Muted-keyword risk.** Does the post contain phrases your target audience commonly mutes (e.g., overused engagement-bait phrases, well-known spam triggers)? [INFERENZ from `MutedKeywordFilter`]
-- [ ] **VFFilter risk.** Could the post be misclassified as spam/violence/gore/policy-violation by automated classifiers in the grox content-understanding service? [FAKT that VFFilter exists; classification is ML, so risk is non-zero even for benign content with edge wording.]
-- [ ] **Selfpost / repost confusion.** If it's a quote of your own earlier post, `RepostDeduplicationFilter` may kill it. [FAKT]
-- [ ] **Stale content.** Is the topic obviously dated? `AgeFilter` only filters by post timestamp, but topical staleness affects engagement and thus the score. [FAKT for the filter; INFERENZ for the engagement implication.]
+- [ ] **Muted-keyword risk.** Does the post contain phrases your target audience commonly mutes (e.g., overused engagement-bait phrases, well-known spam triggers)? [INFERENCE from `MutedKeywordFilter`]
+- [ ] **VFFilter risk.** Could the post be misclassified as spam/violence/gore/policy-violation by automated classifiers in the grox content-understanding service? [FACT that VFFilter exists; classification is ML, so risk is non-zero even for benign content with edge wording.]
+- [ ] **Selfpost / repost confusion.** If it's a quote of your own earlier post, `RepostDeduplicationFilter` may kill it. [FACT]
+- [ ] **Stale content.** Is the topic obviously dated? `AgeFilter` only filters by post timestamp, but topical staleness affects engagement and thus the score. [FACT for the filter; INFERENCE for the engagement implication.]
 
 ## B. Engagement-signal coverage (which of the 15+ Phoenix predictions does this post target?)
 
-[FAKT] Phoenix predicts 15 engagement actions. Each is a separate dimension in the weighted scorer. Posts that target multiple positive dimensions have more upside than posts optimized for likes alone.
+[FACT] Phoenix predicts 15 engagement actions. Each is a separate dimension in the weighted scorer. Posts that target multiple positive dimensions have more upside than posts optimized for likes alone.
 
 - [ ] **P(favorite)** — Is there something a reader nods at and wants to mark? Sharp claim, useful observation, clever phrasing.
 - [ ] **P(reply)** — Is there a hook that invites a response? Question, hot take, deliberately incomplete thought, asks for examples.
@@ -28,27 +28,27 @@ These are [FAKT] from the repo's filter list. Any "yes" here means the post neve
 
 ## C. Negative-signal risk (would this trigger P(not_interested), P(block), P(mute), P(report)?)
 
-[FAKT] These 4 actions are predicted with negative weights. Triggering them shrinks future distribution.
+[FACT] These 4 actions are predicted with negative weights. Triggering them shrinks future distribution.
 
-- [ ] **Off-niche.** Does this post fit the audience that follows you? An off-topic post may get P(not_interested) clicks from people who normally engage. [INFERENZ]
-- [ ] **Hostile or insulting framing.** Even content that's "engagement-positive on Twitter" — pile-ons, dunks, character attacks — invites P(block/mute/report). [INFERENZ; the repo doesn't measure tone but does measure these negative actions.]
+- [ ] **Off-niche.** Does this post fit the audience that follows you? An off-topic post may get P(not_interested) clicks from people who normally engage. [INFERENCE]
+- [ ] **Hostile or insulting framing.** Even content that's "engagement-positive on Twitter" — pile-ons, dunks, character attacks — invites P(block/mute/report). [INFERENCE; the repo doesn't measure tone but does measure these negative actions.]
 - [ ] **Misleading hook.** If the hook promises more than the post delivers, P(not_interested) is the natural reaction.
-- [ ] **Spam patterns.** Excessive hashtags, "RT if you agree" baiting, generic engagement-bait. [HEURISTIK + possible filter hit.]
+- [ ] **Spam patterns.** Excessive hashtags, "RT if you agree" baiting, generic engagement-bait. [HEURISTIC + possible filter hit.]
 
 ## D. Structural quality
 
-- [ ] **Hook in the first 8-10 words.** Especially for short posts, the first beat decides scroll-or-engage. [HEURISTIK]
-- [ ] **One thesis per post.** Multiple unrelated ideas dilute engagement targeting. [INFERENZ — Phoenix scores each post independently, so each post should optimize for its own engagement set.]
-- [ ] **Standalone comprehensibility.** Out-of-network discovery means strangers will see this. Can a cold viewer parse it? [INFERENZ from P(follow_author) being a positive signal.]
+- [ ] **Hook in the first 8-10 words.** Especially for short posts, the first beat decides scroll-or-engage. [HEURISTIC]
+- [ ] **One thesis per post.** Multiple unrelated ideas dilute engagement targeting. [INFERENCE — Phoenix scores each post independently, so each post should optimize for its own engagement set.]
+- [ ] **Standalone comprehensibility.** Out-of-network discovery means strangers will see this. Can a cold viewer parse it? [INFERENCE from P(follow_author) being a positive signal.]
 - [ ] **Length matches format.** Short posts shouldn't try to be long posts; long posts shouldn't have unstructured walls of text.
 
 ## E. Author-context fit
 
-[INFERENZ from "no hand-engineered features; transformer learns from engagement sequence"] The model has a learned representation of your account from past engagement patterns. Posts that match that representation get cleaner Phoenix predictions; off-pattern posts confuse the model.
+[INFERENCE from "no hand-engineered features; transformer learns from engagement sequence"] The model has a learned representation of your account from past engagement patterns. Posts that match that representation get cleaner Phoenix predictions; off-pattern posts confuse the model.
 
 - [ ] **Topic consistency.** Does this fit the niche the model has learned you're in?
-- [ ] **Voice consistency.** Does this match your established voice? [HEURISTIK — the model doesn't measure voice directly, but engagement patterns from your audience implicitly enforce it.]
-- [ ] **Frequency.** Have you posted heavily in the last hour? `AuthorDiversityScorer` will attenuate. [FAKT]
+- [ ] **Voice consistency.** Does this match your established voice? [HEURISTIC — the model doesn't measure voice directly, but engagement patterns from your audience implicitly enforce it.]
+- [ ] **Frequency.** Have you posted heavily in the last hour? `AuthorDiversityScorer` will attenuate. [FACT]
 
 ## F. Honest limitations (always include in the review)
 
