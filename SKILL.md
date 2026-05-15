@@ -46,7 +46,7 @@ If the user hasn't specified, ask. The format choice changes which algorithm sig
 
 **Step 3.5 — Voice source (optional).** Tone-matching is *not* algorithm-grounded; it's stylistic. Offer this step only if (a) the user explicitly wants drafts in a specific voice — their own or someone else's — or (b) generic voice would clearly miss the brief. Three sources, in preference order:
 
-1. **Reference X account.** If X tools are available in your environment (e.g. an X/Twitter MCP that can fetch a user's timeline), ask for a handle. Fetch ~20–40 of the account's original posts (skip reposts; skip replies for short-post mode) and extract patterns: hook structures, sentence length, vocabulary, punctuation habits, what they consistently DO and DON'T do.
+1. **Reference X account.** If you have *any* way to fetch X posts in your environment — an X/Twitter MCP, a CLI tool like `xurl`, a browser/automation tool, or a scraping connector — ask for a handle. Evaluate what's actually available before committing; don't hardcode a single tool as a prerequisite. Fetch ~20–40 of the account's original posts (skip reposts; skip replies for short-post mode) and extract patterns: hook structures, sentence length, vocabulary, punctuation habits, what they consistently DO and DON'T do.
 2. **Pasted samples.** If X tools are not available, ask the user to paste 3–5 representative posts from the account they want to mirror.
 3. **Persona description.** Fallback. Less precise, still usable.
 
