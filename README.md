@@ -50,23 +50,10 @@ That's it. No CLI, no git, no manual file copying.
 
 ### Claude Code (CLI users)
 
-Two options:
-
-**Option 1 — as a marketplace plugin** (recommended if you want auto-updates):
+For Claude Code, clone the repo into your skills directory:
 
 ```bash
-claude plugin marketplace add iret77/x-post-optimizer
-claude plugin install x-post-optimizer
-```
-
-Restart your Claude Code session.
-
-**Option 2 — as a standalone skill** (simpler, no marketplace overhead):
-
-```bash
-git clone https://github.com/iret77/x-post-optimizer.git /tmp/x-post-optimizer
-cp -r /tmp/x-post-optimizer/skills/x-post-optimizer ~/.claude/skills/
-rm -rf /tmp/x-post-optimizer
+git clone https://github.com/iret77/x-post-optimizer.git ~/.claude/skills/x-post-optimizer
 ```
 
 Restart your Claude Code session.
@@ -83,18 +70,17 @@ A successful install gets you a "yes, here's what it does"; a failed install get
 
 ```
 x-post-optimizer/
-├── .claude-plugin/                    # Plugin manifests (for CLI marketplace install)
-│   ├── plugin.json
-│   └── marketplace.json
-└── skills/
-    └── x-post-optimizer/              # The actual skill — this is what gets zipped into the .skill file
-        ├── SKILL.md                   # Workflow + triggers
-        └── references/
-            ├── algorithm-facts.md     # Canonical [FACT] list with repo citations
-            ├── format-playbooks.md    # Per-format guidance (short, long, thread, reply, quote)
-            ├── review-checklist.md    # Six-section review checklist
-            └── example-traces.md      # Two worked examples
+├── SKILL.md                       # Workflow + triggers (the manifest Claude reads)
+├── LICENSE                        # MIT
+├── README.md                      # This file
+└── references/                    # Loaded on demand when the skill triggers
+    ├── algorithm-facts.md         # Canonical [FACT] list with repo citations
+    ├── format-playbooks.md        # Per-format guidance (short, long, thread, reply, quote)
+    ├── review-checklist.md        # Six-section review checklist
+    └── example-traces.md          # Two worked examples
 ```
+
+The repo is the skill — the whole folder is what Claude loads. The `.skill` distribution file is just a zip of this same folder.
 
 ## Source attribution
 
