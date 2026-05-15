@@ -37,18 +37,57 @@ Not grounded — flagged as `[HEURISTIC]` if mentioned:
 
 ## Install
 
-This is a **Claude plugin** for the Claude Desktop app (Cowork mode and regular chat). To install from this repository:
+The easiest way: **ask Claude to install it for you.** Copy the prompt that matches your setup, paste it into a fresh Claude conversation, and Claude does the rest.
 
-In the Claude Desktop app, open the plugin marketplace and add `https://github.com/iret77/x-post-optimizer` as a custom plugin source, then install `x-post-optimizer`. Alternative installation paths may exist depending on your Claude version — consult the in-app plugin manager.
+### Option A — Claude Desktop app (Cowork mode or regular chat)
 
-For **Claude Code CLI**, you can use the bundled `SKILL.md` directly:
+Open a new Claude conversation and paste this:
+
+> Please install the Claude plugin from https://github.com/iret77/x-post-optimizer.
+>
+> If you have filesystem or computer-use access on this machine, do it yourself: figure out where Claude Desktop stores plugins on this OS, clone the repo into the right place, and confirm it worked by listing the installed plugins.
+>
+> If you don't have those tools, walk me through it step by step using the Plugins or Marketplace section of the app's settings. Tell me exactly what to click. After I'm done, ask me to confirm the plugin shows up in the list.
+
+After install, **restart the Claude app or start a new conversation** — plugins are loaded at session start. Then test by asking Claude to "draft a tweet about [your topic]" or "review this X post: [your draft]".
+
+### Option B — Claude Code (CLI)
+
+Open Claude Code in any directory and paste this:
+
+> Please install the x-post-optimizer skill from https://github.com/iret77/x-post-optimizer into my local Claude Code skills directory.
+>
+> Steps:
+> 1. Clone the repo to /tmp/x-post-optimizer
+> 2. Copy /tmp/x-post-optimizer/skills/x-post-optimizer to ~/.claude/skills/
+> 3. Remove /tmp/x-post-optimizer
+> 4. Confirm the install by listing the contents of ~/.claude/skills/x-post-optimizer/ — I should see SKILL.md and a references/ folder
+>
+> Then tell me to start a new Claude Code session for the skill to take effect.
+
+### Option C — Manual install
+
+If you'd rather do it yourself.
+
+**Claude Desktop app:** Open the app → Settings → Plugins (or Marketplace, depending on your version) → "Add plugin from URL" or "Custom plugin source" → enter `https://github.com/iret77/x-post-optimizer`. Restart the app.
+
+**Claude Code CLI:**
 
 ```bash
 git clone https://github.com/iret77/x-post-optimizer.git /tmp/x-post-optimizer
 cp -r /tmp/x-post-optimizer/skills/x-post-optimizer ~/.claude/skills/
+rm -rf /tmp/x-post-optimizer
 ```
 
-Restart your Claude session. The plugin/skill auto-triggers on relevant prompts.
+Restart your Claude Code session.
+
+### How to verify the install worked
+
+After restarting, ask Claude in a new conversation:
+
+> Do you have a skill or plugin called x-post-optimizer available?
+
+A successful install gets you a "yes, here's what it does"; a failed install gets you a "no". If it failed, try the next option above or open an issue.
 
 ## Structure
 
