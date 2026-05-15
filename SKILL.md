@@ -56,7 +56,7 @@ If the user hasn't specified, ask. The format choice changes which algorithm sig
 
 Some claims widely repeated online are **not in the 2026 open-source release** and should not be presented as facts:
 
-- Specific weight multipliers like "Retweet = 20×", "Reply = 13.5×", "Block = -74×". The `params` module with concrete weights is **excluded** from the open-source repo for security reasons. Numbers from third-party blogs typically trace back to the 2023 Twitter `the-algorithm` repo (different system) or to guesswork. If a user insists on numbers, label them explicitly: "[HEURISTIC, aus 2023-Legacy-Code, möglicherweise veraltet]".
+- Specific weight multipliers like "Retweet = 20×", "Reply = 13.5×", "Block = -74×". The `params` module with concrete weights is **excluded** from the open-source repo for security reasons. Numbers from third-party blogs typically trace back to the 2023 Twitter `the-algorithm` repo (different system) or to guesswork. If a user insists on numbers, label them explicitly: "[HEURISTIC, from 2023 legacy code, possibly outdated]".
 - "Sentiment analysis suppresses negative tones." Not in the repo. There is a `VFFilter` that removes deleted/spam/violence/gore content post-selection, but no sentiment ranker is documented.
 - "External links are penalized." Not in the repo. `P(click)` is one of the predicted actions, suggesting link-clicks are a positive signal. The "links hurt reach" claim may be a [HEURISTIC] based on dwell-time tradeoffs but is not verifiable from the code.
 - Time-of-day, post frequency, blue-check effects. Not addressed by the open-source ranker. Mention only if the user asks, labeled clearly as [HEURISTIC].
@@ -78,7 +78,7 @@ Some claims widely repeated online are **not in the 2026 open-source release** a
 <the actual post text, ready to copy>
 
 **Algorithmic trace:**
-- <design choice> — [FACT|INFERENCE|HEURISTIC]: <2-line explanation>
+- <design choice> — [FACT/INFERENCE/HEURISTIC]: <2-line explanation>
 - ...
 
 **Not optimized for:** <signals this draft doesn't target, and why>
@@ -90,10 +90,10 @@ Some claims widely repeated online are **not in the 2026 open-source release** a
 ## Review of: <short description of the draft>
 
 **Strengths** (mapped to algorithm signals):
-- <strength> — [FACT|INFERENCE|HEURISTIC]
+- <strength> — [FACT/INFERENCE/HEURISTIC]
 
 **Weaknesses** (mapped to algorithm signals):
-- <issue> — suggested rewrite: "<new text>" — [FACT|INFERENCE|HEURISTIC]
+- <issue> — suggested rewrite: "<new text>" — [FACT/INFERENCE/HEURISTIC]
 
 **Overall:** <one paragraph>
 ```
